@@ -7,24 +7,24 @@ import config from './config/config.js';
 // console.log("Soy el proceso principal??");
 // console.log(cluster.isPrimary);
 
-// console.log("Objeto Process: ",process.env);
-
+// console.log("Objeto process.env: ", process.env);
+// console.log("Objeto process.env.PORT: ", process.env.PORT);
 // console.log("Argv: ", process.argv.slice(2));
 
 
 // Ejemplo 01
 if (cluster.isPrimary) {
-console.log("Hola, soy el proceso padre: ", process.pid);
-const numCPUs = os.cpus().length;
-console.log("Numero de CPUs: ", numCPUs);
+    console.log("Hola, soy el proceso padre: ", process.pid);
+    const numCPUs = os.cpus().length;
+    console.log("Numero de CPUs: ", numCPUs);
 
 
-// el proceso padre crea un proceso hijo por cada núcleo de la máquina
-for(let i = 0; i < 1; i++){
-    cluster.fork(); // me crea un proceso hijo
-}
+    // el proceso padre crea un proceso hijo por cada núcleo de la máquina
+    for (let i = 0; i < numCPUs - 1; i++) {
+        cluster.fork(); // me crea un proceso hijo
+    }
 
-}else{
+} else {
     const app = express();
 
     app.get("/", (req, res) => {
