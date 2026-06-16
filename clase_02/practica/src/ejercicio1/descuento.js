@@ -27,6 +27,12 @@ const aplicarDescuento = (precio, porcentaje) => {
     //   2) Validar el rango del porcentaje (0 a 100).
     //   3) Caso porcentaje 0.
     //   4) Calcular: precio - (precio * porcentaje / 100).
+
+
+    // Test 1: Debe devolver `null` si `precio` o `porcentaje` NO son números.
+    if (typeof precio !== "number" || typeof porcentaje !== "number") {
+        return null;
+    }
 };
 
 export default aplicarDescuento;

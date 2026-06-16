@@ -22,6 +22,7 @@ export default class UsuariosService {
      */
     async obtenerUsuarios() {
         // 👉 TODO: return await this.dao.getAll();
+        return await this.dao.getAll();
     }
 
     /**
@@ -30,6 +31,9 @@ export default class UsuariosService {
      */
     async obtenerAdultos() {
         // 👉 TODO
+        const usuarios = await this.dao.getAll();
+        return usuarios.filter((u) => u.edad >= 18);
+
     }
 
     /**
@@ -40,5 +44,9 @@ export default class UsuariosService {
      */
     async crearUsuario(usuario) {
         // 👉 TODO
+        if (!usuario.email) {
+            throw new Error("Email inválido");
+        }
+        return await this.dao.create(usuario);
     }
 }

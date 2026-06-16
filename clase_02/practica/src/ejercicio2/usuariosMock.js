@@ -33,11 +33,11 @@ import { faker } from "@faker-js/faker";
 export const generarUsuario = () => {
     // 👉 TODO: devolvé un objeto usuario usando faker (ver la forma de arriba).
     return {
-        // id: ...,
-        // nombre: ...,
-        // email: ...,
-        // edad: ...,
-        // rol: ...,
+        id: faker.string.uuid(),
+        nombre: faker.person.fullName(),
+        email: faker.internet.email(),
+        edad: faker.number.int({ min: 10, max: 90 }),
+        rol: faker.helpers.arrayElement(["user", "admin"]),
     };
 };
 

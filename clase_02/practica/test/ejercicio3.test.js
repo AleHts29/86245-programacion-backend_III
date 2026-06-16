@@ -25,6 +25,7 @@ const main = async () => {
         const service = new UsuariosService(dao);
         // When
         const usuarios = await service.obtenerUsuarios();
+        // console.log("Usuarios: ", usuarios);
         // Then
         assertEquals(usuarios.length, 5);
     });
@@ -54,6 +55,9 @@ const main = async () => {
         const service = new UsuariosService(dao);
         // When
         const nuevo = await service.crearUsuario({ nombre: "Nuevo", email: "nuevo@mail.com" });
+        console.log("Usuario creado: ", nuevo);
+
+
         // Then -> el usuario creado tiene un id asignado por el DAO
         assertTrue(typeof nuevo.id === "string", "el usuario creado debería tener un id");
         // y quedó guardado en el DAO

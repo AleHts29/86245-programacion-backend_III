@@ -13,6 +13,7 @@
  */
 export const filtrarMayoresDeEdad = (usuarios) => {
     // 👉 TODO: usar .filter() sobre el array.
+    return usuarios.filter((usuario) => usuario.edad >= 18);
 };
 
 /**
@@ -21,6 +22,7 @@ export const filtrarMayoresDeEdad = (usuarios) => {
  */
 export const obtenerEmails = (usuarios) => {
     // 👉 TODO: usar .map() sobre el array.
+    return usuarios.map((usuario) => usuario.email);
 };
 
 /**
@@ -29,4 +31,5 @@ export const obtenerEmails = (usuarios) => {
  */
 export const contarPorRol = (usuarios, rol) => {
     // 👉 TODO: filtrar por rol y devolver la cantidad (.length).
+    return usuarios.filter((usuario) => usuario.rol === rol).length;
 };

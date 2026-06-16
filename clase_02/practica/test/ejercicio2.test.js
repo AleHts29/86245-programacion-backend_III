@@ -50,6 +50,8 @@ test("Filtra correctamente dejando solo los mayores o iguales a 18", () => {
     ];
     // When
     const resultado = filtrarMayoresDeEdad(usuarios);
+    // console.log("Resultado: ", resultado);
+
     // Then
     assertEquals(resultado.length, 2);
     assertEquals(resultado[0].nombre, "Ana");
@@ -64,19 +66,23 @@ test("Devuelve un array solo con los emails", () => {
         { email: "beto@mail.com" },
     ];
     const resultado = obtenerEmails(usuarios);
+    // console.log("Resultado: ", resultado);
+
+
+
     assertEquals(resultado, ["ana@mail.com", "beto@mail.com"]);
 });
 
 describe("Ejercicio 2 - contarPorRol");
 
-test("Cuenta correctamente los usuarios admin", () => {
+test("Cuenta correctamente los usuarios developer", () => {
     const usuarios = [
         { rol: "admin" },
-        { rol: "user" },
+        { rol: "developer" },
         { rol: "admin" },
         { rol: "user" },
     ];
-    assertEquals(contarPorRol(usuarios, "admin"), 2);
+    assertEquals(contarPorRol(usuarios, "developer"), 1, "Debería haber 1 developer");
 });
 
 resumen();
