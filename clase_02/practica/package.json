@@ -1,0 +1,19 @@
+{
+  "name": "clase02-practica-tdd-mocks",
+  "version": "1.0.0",
+  "description": "Práctica Clase 02 - TDD y Mocks con tests manuales y @faker-js/faker",
+  "main": "src/app.js",
+  "type": "module",
+  "scripts": {
+    "test:ej1": "node test/ejercicio1.test.js",
+    "test:ej2": "node test/ejercicio2.test.js",
+    "test:ej3": "node test/ejercicio3.test.js",
+    "test": "node test/ejercicio1.test.js && node test/ejercicio2.test.js && node test/ejercicio3.test.js"
+  },
+  "keywords": ["tdd", "mocks", "faker", "testing"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@faker-js/faker": "^9.4.0"
+  }
+}
