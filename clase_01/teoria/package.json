@@ -29,6 +29,6 @@
     "winston": "^3.8.2"
   },
   "devDependencies": {
-    "artillery": "^2.0.0-32"
+    "artillery": "^1.5.6"
   }
 }
