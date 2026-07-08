@@ -17,6 +17,79 @@ paths:
         '500':
           description: Internal server error.
 
+  /api/users/{uid}:
+    get:
+      summary: Get a user by ID
+      description: Retrieve a user by their unique ID.
+      tags:
+        - Users
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          description: The unique identifier of the user.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A single user object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: User not found.
+        '500':
+          description: Internal server error.
+    put:
+      summary: Update a user by ID
+      description: Update the details of a user by their unique ID.
+      tags:
+        - Users
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          description: The unique identifier of the user.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      
+      responses:
+        '200':
+          description: User updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: User not found.
+        '500':
+          description: Internal server error.
+    delete:
+      summary: Delete a user by ID
+      description: Delete a user by their unique ID.
+      tags:
+        - Users
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          description: The unique identifier of the user.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: User deleted successfully.
+        '404':
+          description: User not found.
+        '500':
+          description: Internal server error.
 
 components:
   schemas:

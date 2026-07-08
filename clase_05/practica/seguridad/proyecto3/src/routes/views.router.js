@@ -26,3 +26,6 @@ router.get('/profile/:uid', authenticationMiddleware, async (req, res) => {
     res.render('profile', { user })
 })
 export default router;
+
+
+// A01	Broken Access Control - A07 sesión mal manejada

@@ -1,0 +1,227 @@
+paths:
+  /api/pets/:
+    get:
+      summary: Obtiene todas las mascotas disponibles en la aplicacion.
+      tags:
+        - Pets
+      responses:
+        "200":
+          description: La operacion fue exitosa!, se retorna un arreglo de las mascotas.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  payload:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Pet'
+        "500":
+          description: Error inesperado en el servidor, no se pudo manejar el proceso.
+    post:
+      summary: Crea una nueva mascota en la aplicacion.
+      tags:
+        - Pets
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/requestBodies/createPet'
+      responses:
+        "200":
+          description: La mascota fue creada correctamente, se retorna la mascota creada.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  payload:
+                    $ref: '#/components/schemas/Pet'
+        "400":
+          description: Valores incompletos. Se requieren name, specie y birthDate.
+        "500":
+          description: Error inesperado en el servidor, no se pudo manejar el proceso.
+
+  /api/pets/withimage:
+    post:
+      summary: Crea una nueva mascota adjuntando una imagen.
+      tags:
+        - Pets
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Nombre de la mascota.
+                specie:
+                  type: string
+                  description: Especie de la mascota.
+                birthDate:
+                  type: string
+                  description: Fecha de nacimiento de la mascota.
+                image:
+                  type: string
+                  format: binary
+                  description: Archivo de imagen de la mascota.
+      responses:
+        "200":
+          description: La mascota fue creada correctamente con su imagen.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  payload:
+                    $ref: '#/components/schemas/Pet'
+        "400":
+          description: Valores incompletos. Se requieren name, specie y birthDate.
+        "500":
+          description: Error inesperado en el servidor, no se pudo manejar el proceso.
+
+  /api/pets/{pid}:
+    put:
+      summary: Actualiza una mascota existente.
+      tags:
+        - Pets
+      parameters:
+        - name: pid
+          in: path
+          schema:
+            type: string
+          required: true
+          description: El identificador de la mascota.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/requestBodies/updatePet'
+      responses:
+        "200":
+          description: La mascota fue actualizada correctamente.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: pet updated
+        "500":
+          description: Error inesperado en el servidor, no se pudo manejar el proceso.
+    delete:
+      summary: Elimina una mascota existente.
+      tags:
+        - Pets
+      parameters:
+        - name: pid
+          in: path
+          schema:
+            type: string
+          required: true
+          description: El identificador de la mascota.
+      responses:
+        "200":
+          description: La mascota fue eliminada correctamente.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: pet deleted
+        "500":
+          description: Error inesperado en el servidor, no se pudo manejar el proceso.
+
+components:
+  schemas:
+    Pet:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: ID autogenerado de MongoDB.
+        name:
+          type: string
+          description: Nombre de la mascota.
+        specie:
+          type: string
+          description: Especie de la mascota.
+        birthDate:
+          type: string
+          description: Fecha de nacimiento de la mascota.
+        adopted:
+          type: boolean
+          description: Indica si la mascota fue adoptada.
+        owner:
+          type: string
+          description: ID del usuario propietario de la mascota.
+        image:
+          type: string
+          description: Ruta de la imagen de la mascota.
+      example:
+        _id: ObjectId("647fa8c9e46dbc5a20320181")
+        name: Firulais
+        specie: perro
+        birthDate: 2020-01-01
+        adopted: false
+        owner: ObjectId("647fa8c9e46dbc5a20320999")
+        image: /public/img/1671549990926-coderDog.jpg
+  requestBodies:
+    createPet:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Nombre de la mascota.
+        specie:
+          type: string
+          description: Especie de la mascota.
+        birthDate:
+          type: string
+          description: Fecha de nacimiento de la mascota.
+      example:
+        name: Firulais
+        specie: perro
+        birthDate: 2020-01-01
+    updatePet:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Nombre de la mascota.
+        specie:
+          type: string
+          description: Especie de la mascota.
+        birthDate:
+          type: string
+          description: Fecha de nacimiento de la mascota.
+        adopted:
+          type: boolean
+          description: Indica si la mascota fue adoptada.
+      example:
+        name: Firulais actualizado
+        specie: perro
+        birthDate: 2020-01-01
+        adopted: true

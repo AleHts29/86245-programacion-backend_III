@@ -14,3 +14,16 @@ router.post('/register', (req, res) => {
 })
 
 export default router;
+
+/*
+A02: Cryptographic Failures
+
+A03 Injection / A04 Insecure Design
+El req.body se procesa directo, sin destructurar ni validar → mass assignment: el atacante puede mandar role: "admin", un id arbitrario o campos extra.
+
+
+
+--> console.log(user);
+A09	Logging and Monitoring Failures
+
+*/

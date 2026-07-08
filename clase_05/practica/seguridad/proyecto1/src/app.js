@@ -14,4 +14,4 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 app.use('/', viewsRouter);
 app.use('/api/sessions', sessionsRouter);
-app.listen(8080, () => console.log(`Listening on PORT 8080`)) // falta variable de entorno!
+app.listen(8080, () => console.log(`Listening on PORT 8080`)) // A05 Security Misconfiguration - Puerto hardcodeado, sin variable de entorno.

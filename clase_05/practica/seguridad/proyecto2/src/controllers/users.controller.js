@@ -18,3 +18,6 @@ export default {
     getUsers,
     getUser
 }
+
+
+// A01 Broken Access Control / Exposición de datos
