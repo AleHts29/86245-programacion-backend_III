@@ -7,6 +7,7 @@ import dotenv from 'dotenv'
 
 import usersRouter from './routes/users.router.js';
 import petsRouter from './routes/pets.router.js';
+import chatRouter from './routes/chat.router.js';
 import adoptionsRouter from './routes/adoption.router.js';
 import sessionsRouter from './routes/sessions.router.js';
 
@@ -39,6 +40,10 @@ app.use('/docs', swaggerUIExpress.serve, swaggerUIExpress.setup(specs));
 
 app.use(express.json());
 app.use(cookieParser());
+
+
+// Task: crear endpopint para un chat
+app.use('/api/chat', chatRouter)
 
 app.use('/api/users', usersRouter);
 app.use('/api/pets', petsRouter);
